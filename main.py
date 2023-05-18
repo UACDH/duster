@@ -20,10 +20,16 @@ def run(
     pathspec: str = typer.Option(..., "--pathspec", "-p", help="Git pathspec to use. Use this argument to specify which files or directories to include in the commit message. You can use wildcards and exclude patterns to fine-tune your selection. For example, to include all Python files in the 'src' directory, use 'src/*.py'. To exclude all files with the '.txt' extension, use '!*.txt'.")
 ):
     """Generate the commit message"""
-    git_diff = getDiff(path, pathspec)
-    ai_engine = AIEngine(git_diff)
-    commit_message = ai_engine.generate_commit_message()
-    console.log(commit_message)
+    try:
+        git_diff = getDiff(path, pathspec)
+        if not git_diff:
+            console.log("No changes found. Please make sure your changes are staged before running the command.")
+            return
+        ai_engine = AIEngine(git_diff)
+        commit_message = ai_engine.generate_commit_message()
+        console.log(commit_message)
+    except Exception as e:
+        console.log(f"An error occurred: {e}. Please make sure your changes are staged before running the command.")
 
 if __name__ == '__main__':
     app()
