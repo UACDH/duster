@@ -13,7 +13,7 @@ class AIEngine:
     def generate_commit_message(self):
         openai.api_key = os.environ["OPENAI_API_KEY"]
         model_engine = "gpt-3.5-turbo"
-        response = openai.ChatCompletion.create(
+        openai_response = openai.ChatCompletion.create(
             model=model_engine,
             messages=[
                 {"role": "system", "content": self.sysmsg},
@@ -24,7 +24,7 @@ class AIEngine:
             stop=None,
             temperature=0.5,
         )
-        response = response["choices"][0]
+        response = openai_response["choices"][0]
         if response["finish_reason"] != "stop":
             raise Exception("AI response too long for commit title.")
         return response["message"]["content"]
