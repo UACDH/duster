@@ -6,7 +6,7 @@ class AIEngine:
         self.git_diff = git_diff
         self.prompt = "Please generate a commit title message for the following git diff:\n\n" + self.git_diff
         self.sysmsg = """You are a software developer that writes excellent commit messages.
-                        You will keep your response to 60 characters or less, and only respond with the commit title. The title you
+                        You will keep your response to 50 characters or less, and only respond with the commit title. The title you
                         respond with will be descriptive and representative of the code changes. If the input is empty or doesn't make sense,
                         respond with \"Invalid input - please try again.\""""
 
