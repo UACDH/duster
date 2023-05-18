@@ -2,9 +2,11 @@
 This is a Python command line tool that generates a commit message based on the changes in your Git repository using ChatGPT
 
 ## Installation
-Clone the repository: git clone https://github.com/your-username/git-commit-message-generator.git
+Clone the repository: git clone https://github.com/UACDH/duster.git
 Install the required packages: pip install -r requirements.txt
 ## Usage
+Before running the tool, make sure to set the `OPENAI_API_KEY` environment variable to your OpenAI API key. You can do this by running the following command in your terminal:
+`export OPENAI_API_KEY=<YOUR_OPENAI_KEY>`
 To generate a commit message, run the following command:
 `python3 main.py --pathspec "*.py"`
 This will generate a commit message based on the changes to all Python files in the repository.
